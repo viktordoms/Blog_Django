@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  web:
+    container_name: "python-blog-django-container"
+    build: ./web
+    volumes:
+      - .:/blog_django
+    ports:
+      - "8083:8083"
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0.27
+    container_name: "database-blog-django-container"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: 'db_blog_django'
+      MYSQL_USER: 'viktor'
+      MYSQL_PASSWORD: '14051998'
+      MYSQL_ROOT_PASSWORD: 'root'
+    restart: always
+    volumes:
+      - ./db_django:/var/lib/mysql
