@@ -1,0 +1,60 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.wrapper{
+  margin: 0 auto;
+  weight: 90%;
+}
+#bg{
+    position: fixed;
+    width: 100%;
+    height: 100%
+}
+
+.header-block-for-all {
+  width: 100%;
+  background: #00000080;
+  height: 80px;
+  border-bottom:3px;
+  padding: 10px;
+}
+
+#button-header-main{
+  float: left;
+  width: 150px;}
+#header-button-main-text{
+  text-decoration: none;
+  color: #f7f7f7;}
+
+
+#button-header-login{
+  float: right;
+  width: 113px;
+  margin-left: 10px;}
+#header-button-login-text{
+  text-decoration: none;
+  color: #f7f7f7;}
+
+
+#button-header-register{
+  float: right;
+  width: 170px;}
+#header-button-register-text{
+  text-decoration: none;
+  color: #f7f7f7;}
+
+
+.button-header{
+  text-align: center;
+  height: 35px;
+  font-size: 25px;
+  font-weight: 400;
+  transition: .6s ease;
+}
+.button-header:hover{
+    color: #b50d1b;
+    background: #3e7dda;
+    border-radius: 3px;
+}

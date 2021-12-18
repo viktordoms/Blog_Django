@@ -7,9 +7,11 @@ services:
     volumes:
       - .:/blog_django
     ports:
-      - "8083:8083"
+      - "8083:8000"
     depends_on:
       - db
+    networks:
+      - web
   db:
     image: mysql:8.0.27
     container_name: "database-blog-django-container"
@@ -21,5 +23,11 @@ services:
       MYSQL_PASSWORD: '14051998'
       MYSQL_ROOT_PASSWORD: 'root'
     restart: always
+    networks:
+      - web
     volumes:
       - ./db_django:/var/lib/mysql
+
+networks:
+  web:
+    driver: bridge

@@ -1,6 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
-def index(request):
-    return HttpResponse("<h4>Hello world</h4>")
+def main_header(request):
+    return render(request, "main/main.html")
+
+
+def registration(request):
+    return render(request, "main/registration.html")
+
+
+def login(request):
+    return render(request, "main/login.html")

@@ -1,0 +1,26 @@
+{% extends 'main/setting.html' %}
+{% load static %}
+{% block header %}
+<header class="header-block-for-all">
+    <div class="wrapper">
+      <div id="button-header-main" class="button-header">
+        <a id="header-button-main-text" href="{% url 'main' %}"><i class="fas fa-home"></i> Головна</a>
+      </div>
+      <div id="button-header-login" class="button-header">
+        <a id="header-button-login-text" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Вхід</a>
+      </div>
+      <div id="button-header-register" class="button-header">
+        <a id="header-button-register-text" href="{% url 'register' %}"><i class="fas fa-registered"></i> Реєстрація</a>
+      </div>
+      <!-- <div id="user_acount">
+        <a class="button_menu" href="/users" type='submit' >Мій акаунт</a>
+      </div>
+      <div id="all_post_form">
+        <a class="button_menu" href="/all_post" type='submit' >Всі пости</a>
+      </div> -->
+    </div>
+</header>
+<main>
+  {% block main %}{% endblock %}
+</main>
+{% endblock %}
