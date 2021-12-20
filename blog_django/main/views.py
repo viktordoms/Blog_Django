@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 
-def main_header(request):
+def main(request):
     data = {"title": "Головна сторінка"}
     return render(request, "main/main.html", data)
 

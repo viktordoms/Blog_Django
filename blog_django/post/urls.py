@@ -5,7 +5,5 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.main, name='main'),
-    path('login', views.login, name='login'),
-    path('register', views.registration, name='register')
+    path('', views.all_post, name='all_post'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
