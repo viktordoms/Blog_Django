@@ -1,0 +1,22 @@
+{% extends 'post/all_post.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block post %}
+
+{% for el in post_category %}
+<ul>
+<div id="my_post_block">
+  <p id="topic_my_post">Тема: {{ el.title}}</p>
+  <p id="categor_my_post">Текст поста: {{ el.text|linebreaks|truncatewords:30}}</p>
+  <p>Дата публікування: {{ el.time_create }} </p>
+  <p class="link-read-post"><a href="{{ el.get_absolute_url }}">Читати пост</a></p>
+</div>
+</ul>
+{% endfor %}
+
+
+
+{% endblock %}

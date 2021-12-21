@@ -14,4 +14,3 @@ class Users(models.Model,):
     class Meta:
         verbose_name = "Користувач"
         verbose_name_plural = "Користувачі"
-
