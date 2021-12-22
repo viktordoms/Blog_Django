@@ -1,13 +1,29 @@
-{% extends 'post/all_post.html' %}
+{% extends 'main/header_for_all.html' %}
 {% load static %}
+{% load post_tags %}
+
+
 {% block title %}
 {{ title }}
 {% endblock %}
 
-{% block post %}
 
-<p>{{post_id}}</p>
+{% block main %}
+<aside class="aside-for-post">
+   {% list_categories 'name' categories_selected %}
+</aside>
 
+<div class="form-post-block">
 
+   {% if post.photo %}
+     <p><img class="img-post" src="{{post.photo.url}}"></p>
+   {% endif %}
 
+     <div id="my_post_block">
+       <p class="categor_text">Категорія: {{post.category}}</p>
+       <p id="topic_my_post">Тема: {{ post.title}}</p>
+       <p id="categor_my_post">Текст поста: {{ post.text|linebreaks}}</p>
+       <p class="date_text">Дата створення: {{post.time_update|date:"d-m-Y H:i:s"}}</p>
+     </div>
+</div>
 {% endblock %}
