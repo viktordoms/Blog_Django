@@ -18,7 +18,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = "Пост"
         verbose_name_plural = "Пости"
-        ordering = ['time_create']
+        ordering = ['-time_create']
 
     def get_absolute_url(self):
         return reverse('post', kwargs={"post_slug": self.slug})
@@ -37,3 +37,4 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Категорія"
         verbose_name_plural = "Категорії"
+

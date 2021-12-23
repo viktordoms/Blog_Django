@@ -8,17 +8,21 @@
 {% endblock %}
 
 
-{% block main %}
-
+{% block aside %}
+<!-- Бокова панель -->
 <aside class="aside-for-post">
 {% list_categories 'name' categories_selected %}
 </aside>
+<!-- Кінець бокової панелі -->
+{% endblock %}
 
+{% block content %}
+<!-- Відображенян постів -->
 <div class="form-post-block">
 {% for el in post_category %}
    <div class="info-about-post">
       <p class="categor_text">Категорія: {{el.category}}</p>
-	    <p class="date_text">Дата створення: {{el.time_update|date:"d-m-Y H:i:s"}}</p>
+	    <p class="date_text">Дата створення: {{el.time_create|date:"d-m-Y H:i:s"}}</p>
   </div>
   <div id="my_post_block">
   {% if el.photo %}
@@ -30,5 +34,6 @@
   </div>
 {% endfor %}
 </div>
+<!-- Кінець відобреження постів -->
 
 {% endblock %}

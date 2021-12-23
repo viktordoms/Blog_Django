@@ -8,11 +8,16 @@
 {% endblock %}
 
 
-{% block main %}
+{% block aside %}
+<!-- Бокова панель -->
 <aside class="aside-for-post">
-   {% list_categories 'name' categories_selected %}
+{% list_categories 'name' categories_selected %}
 </aside>
+<!-- Кінець бокової панелі -->
+{% endblock %}
 
+<!-- Відображенян постів -->
+{% block content %}
 <div class="form-post-block">
 
    {% if post.photo %}
@@ -27,3 +32,4 @@
      </div>
 </div>
 {% endblock %}
+<!-- Кінець відобреження постів -->

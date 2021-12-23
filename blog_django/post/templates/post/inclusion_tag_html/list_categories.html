@@ -5,10 +5,12 @@
 {% endif %}
 
 
-{% for c in categories %}
+{% for c in categor %}
+{% if c.post__count > 0 %}
   {% if c.pk == categories_selected %}
     <p class="selected">{{c.name}}</p>
   {% else %}
     <p><a href="{{ c.get_absolute_url }}">{{c.name}}</a></p>
   {% endif %}
+{% endif %}
 {% endfor %}

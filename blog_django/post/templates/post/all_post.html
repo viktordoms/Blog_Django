@@ -8,16 +8,34 @@
 {% endblock %}
 
 
-{% block main %}
-<div class="">
-
+{% block aside %}
+<!-- Бокова панель -->
 <aside class="aside-for-post">
 {% list_categories 'name' categories_selected %}
 </aside>
+<!-- Кінець бокової панелі -->
+{% endblock %}
 
+{% block content %}
+<!-- Відображенян постів -->
 <form class="form-post-block">
-  {% show_posts '-time_create' %}
+  {% for el in posts %}
+     <div class="info-about-post">
+        <p class="categor_text">Категорія: {{el.category}}</p>
+  	    <p class="date_text">Дата створення: {{el.time_create|date:"d-m-Y H:i:s"}}</p>
+    </div>
+    <div id="my_post_block">
+    {% if el.photo %}
+  	   <p><img class="img-post" src="{{el.photo.url}}"></p>
+    {% endif %}
+      <p id="topic_my_post">Тема: {{ el.title}}</p>
+      <p id="categor_my_post">Текст поста: {{ el.text|linebreaks|truncatewords:30}}</p>
+      <p class="link-read-post"><a href="{{ el.get_absolute_url }}">Читати пост</a></p>
+    </div>
+  {% endfor %}
 </form>
+<!-- Кінець відобреження постів -->
 
-</div>
+
+
 {% endblock %}

@@ -2,15 +2,13 @@
 {% load static %}
 
 
-
 {% block title %}
 {{ title }}
 {% endblock %}
 
 
-{% block main %}
+{% block aside %}
 <div class="">
-
 <aside class="aside-for-main">
   <div id="button-aside-posts" class="button-aside">
     <a id="aside-button-posts-text" href="{% url 'all_post' %}"><i class="fas fa-registered"></i> Всі пости</a>
@@ -19,6 +17,10 @@
     <a id="aside-button-add-post-text" href="{% url 'create_post' %}"><i class="fas fa-registered"></i> Додати пост</a>
   </div>
 </aside>
-
 </div>
 {% endblock %}
+<main>
+  {% block content %}
+
+  {% endblock %}
+</main>
