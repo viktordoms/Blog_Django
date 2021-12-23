@@ -1,54 +1,66 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import *
 from django.http import HttpResponseNotFound
-from .forms import *
+from django.views.generic import ListView, DetailView, CreateView
 
-posts = Post.objects.all()
+from .models import Post as PostModel
+from .forms import *
 
 
 def pageNotFound(request, expertion):
     return HttpResponseNotFound("<h1>Сторінку не знайдено</h1>")
 
 
-def create_post(request):
-    if request.method == 'POST':
-        form = AddPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('all_post')
-    else:
-        form = AddPostForm()
+class CreatePost(CreateView):
+    form_class = AddPostForm
+    template_name = 'post/create_post.html'
 
-    data = {"title": "Новий пост",
-            "form": form,
-            }
-    return render(request, "post/create_post.html", data)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Новий пост'
+        return context
 
 
-def all_post(request):
-    data = {"title": "Всі пости",
-            "posts": posts,
-            "categories_selected": 0,
-            }
-    return render(request, "post/all_post.html", data)
+class AllPost(ListView):
+    model = PostModel
+    template_name = 'post/all_post.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Всі пости'
+        context['categories_selected'] = 0
+        return context
+
+    def get_queryset(self):
+        return PostModel.objects.filter(is_published=True)
 
 
-def post(request, post_slug):
-    post = get_object_or_404(Post, slug=post_slug)
-    data = {'title': post.title,
-            'post': post,
-            'categories_selected': post.category_id
-            }
+class Post(DetailView):
+    model = PostModel
+    template_name = 'post/post_detail.html'
+    context_object_name = 'post'
+    slug_url_kwarg = 'post_slug'
 
-    return render(request, "post/post_detail.html", data)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post']
+        context['categories_selected'] = 0
+        return context
 
 
-def category(request, category_id):
-    post_category = Post.objects.filter(category_id=category_id)
-    data = {"title": "Категорія:",
-            "post_category": post_category,
-            "categories_selected": category_id,
-            }
-    return render(request, "post/category.html", data)
+class PostCategory(ListView):
+    model = PostModel
+    template_name = 'post/category.html'
+    context_object_name = 'post_category'
+    allow_empty = False
+
+    def get_queryset(self):
+        return PostModel.objects.filter(category__slug=self.kwargs['category_slug'], is_published=True)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Категорія - ' + str(context['post_category'][0].category)
+        context['categories_selected'] = context['post_category'][0].category_id
+        return context
 
 
