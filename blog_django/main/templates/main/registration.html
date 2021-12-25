@@ -10,13 +10,11 @@
     {% csrf_token %}
     <p class="text-inform">Реєстрація користувача</p>
     <div>
-      <p><input type="text" class="form-login" id="first_name" name="first_name" required maxlength="20" placeholder="Введіть ім'я(максимум 20 символів)"></p>
-      <p><input type="text" class="form-login" id="last_name" name="last_name" required maxlength="20" placeholder="Введіть прізвище(максимум 20 символів)"></p>
-      <p><input type="email" class="form-login" id="email" name="email" required placeholder=" Введіть Email(email@example.com)"></p>
-      <p><input type="password" class="form-login" id="password" name="password" required  placeholder=" Введіть пароль(більше 8-ми символів)"></p>
-      <p><input type="password" class="form-login" id="password2" name="password2" required placeholder=" Повторіть пароль"></p>
+    {% for f in form %}
+       <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+       <div class="form-error">{{ f.errors }}</div>
+     {% endfor %}
       <button type='submit' class="button_add">Реєстрація</button>
-      <a class="button" href="{% url 'login' %}" type='submit' >Авторизація</a>
     </div>
 
 {% endblock %}

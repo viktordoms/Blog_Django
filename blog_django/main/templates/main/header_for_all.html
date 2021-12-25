@@ -6,11 +6,12 @@
       <div id="button-header-main" class="button-header">
         <a id="header-button-main-text" href="{% url 'main' %}"><i class="fas fa-home"></i> Головна</a>
       </div>
-      <div id="button-header-login" class="button-header">
-        <a id="header-button-login-text" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Вхід</a>
-      </div>
-      <div id="button-header-register" class="button-header">
-        <a id="header-button-register-text" href="{% url 'register' %}"><i class="fas fa-registered"></i> Реєстрація</a>
+      <div class="">
+       {% if request.user.is_authenticated %}
+				<li class="last"> {{user.username}} | <a href="{% url 'logout' %}">Вихід</a></li>
+				{% else %}
+				<li class="last"><a href="{% url 'register' %}">Реєстрація</a> | <a href="{% url 'login' %}">Вхід</a></li>
+				{% endif %}
       </div>
     </div>
 </header>
