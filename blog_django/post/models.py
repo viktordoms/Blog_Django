@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-
 class Post(models.Model):
     title = models.CharField("Заголовок", max_length=255)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
@@ -18,11 +17,6 @@ class Post(models.Model):
 
     def total_likes(self):
         return self.likes.count()
-
-    # def save(self, request=False, *args, **kwargs):
-    #     if request == True:
-    #         self.user =
-    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

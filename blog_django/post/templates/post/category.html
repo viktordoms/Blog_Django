@@ -29,7 +29,7 @@
  </div>
     <p id="topic_my_post">Тема: {{ el.title}}</p>
     <b id="text_my_post">{{ el.text|linebreaks|truncatewords:30}}</b>
-    <p class="link-read-post"><a id='link-no-decoration' href="{{ el.get_absolute_url }}">Читати пост</a></p>
+    <p class="link-read-post"><a class='link-no-decoration' href="{{ el.get_absolute_url }}">Читати пост</a></p>
   </div>
   </form>
 {% endfor %}

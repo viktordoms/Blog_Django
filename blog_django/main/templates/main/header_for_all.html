@@ -9,10 +9,10 @@
       <div class="header-login-register">
        {% if request.user.is_authenticated %}
 
-				<div > 
-          <a class="button-header" id="header-button-login-text" href="{% url 'my_post' %}">Мої пости</a>
+				<div >
+          <a class="button-header" id="header-button-mypost-text" href="{% url 'my_post' %}">Мої пости</a>
 
-          <b id="text-user-name">{{user.username}}</b>
+          <b id="text-user-name"><i class="fas fa-user"></i> {{user.username}}</b>
            |
            <a class="button-header" id="header-button-login-text" href="{% url 'logout' %}">Вихід <i class="fas fa-sign-in-alt"></i></a></div>
 				{% else %}

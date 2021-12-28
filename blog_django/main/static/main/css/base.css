@@ -38,6 +38,11 @@
 #header-button-register-text{
   text-decoration: none;
   color: #f7f7f7;}
+#header-button-mypost-text{
+  text-decoration: none;
+  color: #f7f7f7;
+  margin-right: 35px;
+  }
 
 .header-login-register{
   float: right;
@@ -60,6 +65,7 @@
     color: #b50d1b;
     background: #9e651a;
     border-radius: 3px;}
+
 /* Кінець шапки сторінки */
 
 /* Бокова панель головна*/
@@ -314,4 +320,73 @@ font-weight: 400;
     text-align: center;
     padding: 5px;
     border: 1px solid;
+}
+.block-del-update{
+    padding: 5px;
+    margin: 5px;
+    width: 400px;
+    text-align: center;
+    margin-left: 630px;
+}
+#update_post_btn{
+  margin: 30px;
+    background: #387405;
+    padding: 3px;
+}
+#delete_post_btn{
+  margin: 30px;
+    background: #925b1d;
+    padding: 3px;
+}
+
+.form-delete-block{
+  background: #ff25002e;
+  padding: 10px;
+  height: 234px;
+  padding-left: 30px;
+  margin-top: 6px;
+  width: 83%;
+  border: 2px solid #b0a9a9;
+  margin-left: 200px;
+}
+
+.info-delete-post{
+  padding: 42px;
+      background: #c8101059;
+      border: 1px solid;
+      margin-left: -22px;
+      margin-top: 23px;
+      text-align: center;;
+}
+#info-delete-text{
+  font-size: 35px;
+}
+.btn-form-delete{
+text-align: center;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #dea7025c;
+    height: 41px;
+    font-size: 20px;
+    border: 3px solid #2a2a2a;
+    border-radius: 14px;
+    font-weight: 400;
+    margin-right: 96px;
+}
+#btn-back{
+  text-decoration: none;
+  color: black;
+}
+
+.btn-like{
+  font-size: 25px;
+  padding: 5px;
+  background-color: #e7e7e7;
+  color: #ce0808;
+  border-radius: 50%;
+  transition-duration: 0.4s;
+}
+.btn-like:hover{
+  background-color: #cecb08b5;
 }

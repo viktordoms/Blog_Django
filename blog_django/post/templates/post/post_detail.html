@@ -32,22 +32,35 @@
        <p id="categor_my_post">{{ post.text|linebreaks}}</p>
 
      </div>
-
+<!-- Лайки -->
      <form class="" action="{% url 'like_post' post.slug %}" method="POST">
     {% csrf_token %}
+
     {% if user.is_authenticated %}
-       {% if liked %}
-           <button type="submit" class="fas fa-thumbs-down" name="post_slug" value="{{ post.slug }}"></button>
-       {% else %}
-           <button type="submit" class="fas fa-thumbs-up" name="post_slug" value="{{ post.slug }}"></button>
-       {% endif %}
+         {% if liked %}
+             <button type="submit" class="btn-like" name="post_slug" value="{{ post.slug }}"><i class="fas fa-thumbs-down"></i></button>
+         {% else %}
+             <button type="submit" class="btn-like" name="post_slug" value="{{ post.slug }}"><i class="fas fa-thumbs-up"></i></button>
+         {% endif %}
+
     {% else %}
-    <div>
-        <a href="{% url 'login' %}">Авторизуйтесь</a> для того щоб лайкнути
-    </div>
+         <div>
+             <a href="{% url 'login' %}">Авторизуйтесь</a> для того щоб лайкнути
+         </div>
     {% endif %}
        {{total_likes}}
      </form>
+<!-- Лайки -->
+
+<div class="block-del-update">
+  {% if user.is_authenticated %}
+    {% if post.user.id == request.user.id %}
+       <b class="link-read-post" id="update_post_btn"><a class='link-no-decoration' href="{% url 'update_post' post.slug %}">Редагувати </a></b>
+       <b class="link-read-post" id="delete_post_btn"><a class='link-no-decoration' href="{% url 'delete_post' post.slug %}">Видалити </a></b>
+    {% endif %}
+  {% endif %}
+</div>
+
 </div>
 {% endblock %}
 <!-- Кінець відобреження постів -->

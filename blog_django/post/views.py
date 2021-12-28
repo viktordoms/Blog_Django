@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, reverse
 from django.http import HttpResponseNotFound, HttpResponseRedirect
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
@@ -12,10 +12,6 @@ from .utils import *
 
 def pageNotFound(request, expertion):
     return HttpResponseNotFound("<h1>Сторінку не знайдено</h1>")
-
-
-def edit_post(request):
-    pass
 
 
 @login_required
@@ -83,6 +79,40 @@ class Post(DataMixin, DetailView):
         context['total_likes'] = total_likes
         context["liked"] = liked
         return dict(list(context.items()) + list(c_def.items()))
+
+
+class UpdatePost(LoginRequiredMixin, UserPassesTestMixin, DataMixin, UpdateView):
+    form_class = AddPostForm
+    model = PostModel
+    template_name = 'post/update_post.html'
+    login_url = reverse_lazy('login')
+    context_object_name = 'post'
+    slug_url_kwarg = 'post_slug'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title=context['post'])
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        return False
+
+
+class DeletePost(LoginRequiredMixin, UserPassesTestMixin, DataMixin, DeleteView):
+    model = PostModel
+    template_name = 'post/delete_post.html'
+    context_object_name = 'post'
+    slug_url_kwarg = 'post_slug'
+    success_url = reverse_lazy('my_post')
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        return False
 
 
 class PostCategory(DataMixin, ListView):

@@ -1,8 +1,4 @@
-from django.db.models import Count
-from django.shortcuts import render, get_object_or_404, redirect
-
 from .models import Post, Category
-from django.contrib.auth.models import User
 
 
 class DataMixin:
