@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class RegisterUserForm(UserCreationForm):
@@ -13,6 +14,9 @@ class RegisterUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+    def get_absolute_url(self):
+        return reverse('user', kwargs={"user_id": self.pk})
 
 
 class LoginUserForm(AuthenticationForm):

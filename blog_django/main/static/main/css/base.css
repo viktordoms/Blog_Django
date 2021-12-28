@@ -11,7 +11,7 @@
     width: 100%;
     height: 100%
 }
-
+/* Шапка сторінки */
 .header-block-for-all {
   width: 100%;
   background: #00000080;
@@ -19,31 +19,34 @@
   border-bottom:3px;
   padding: 10px;
 }
-
+#text-user-name{
+  color: #922222;
+  font-size: 30px;
+}
 #button-header-main{
   float: left;
   width: 150px;}
 #header-button-main-text{
   text-decoration: none;
   color: #f7f7f7;}
-
-
-#button-header-login{
-  float: right;
-  width: 113px;
-  margin-left: 10px;}
 #header-button-login-text{
   text-decoration: none;
   color: #f7f7f7;}
-
-
-#button-header-register{
-  float: right;
-  width: 170px;}
+#header-button-logout-text{
+    text-decoration: none;
+    color: #f7f7f7;}
 #header-button-register-text{
   text-decoration: none;
   color: #f7f7f7;}
 
+.header-login-register{
+  float: right;
+    text-align: center;
+    height: 35px;
+    font-size: 25px;
+    margin-right: 20px;
+    font-weight: 400;
+}
 
 .button-header{
   text-align: center;
@@ -51,16 +54,16 @@
   font-size: 25px;
   font-weight: 400;
   transition: .6s ease;
+
 }
 .button-header:hover{
     color: #b50d1b;
-    background: #3e7dda;
-    border-radius: 3px;
-}
+    background: #9e651a;
+    border-radius: 3px;}
+/* Кінець шапки сторінки */
 
-
+/* Бокова панель головна*/
 .aside-for-main{
-  height: 100vh;
 width: 15%;
 background: #5e5d578f;
 float: left;
@@ -73,9 +76,92 @@ border-left: none;
 ul.list {
 	border-bottom: 1px solid #ccc;
 }
+.button-aside{
+  padding-top: 22px;
+padding-bottom: 20px;
+background: #71757b;
+margin-top: 10px;
+text-align: center;
+border: 2px solid black;
+font-size: x-large;
+font-weight: 400;
+}
+
+/* Кінець бокової панелі */
+
+/* Форма реєстрації */
+.form-register{
+  margin-top: 100px;
+  margin-left: 417px;
+  text-align: center;
+  width: 461px;
+  background: #5e5e72a8;
+  border: 3px solid #746822;
+  padding: 36px;
+  padding-top: 25px;
+}
+
+.text-inform{
+  font-size: 30px;
+  font-weight: 400;
+  color: black;
+  margin-bottom: 31px;
+}
+
+.label-area{
+  width: 100px;
+}
+
+#button_register{
+  text-align: center;
+      padding: 5px;
+      padding-left: 15px;
+      padding-right: 15px;
+      background: #dea7025c;
+      height: 41px;
+      font-size: 20px;
+      border: 3px solid #2a2a2a;
+      border-radius: 14px;
+      font-weight: 400;
+}
+
+.form-error{
+  color: #aa0101;
+}
+/* Кінець форми реєстрації */
+
+/* Форма авторизації */
+.form-login{
+  margin-top: 50px;
+  margin-left: 417px;
+  text-align: center;
+  width: 461px;
+  background: #5e5e72a8;
+  border: 3px solid #746822;
+  padding: 36px;
+}
+#button_login{
+  text-align: center;
+      padding: 5px;
+      padding-left: 15px;
+      padding-right: 15px;
+      background: #dea7025c;
+      height: 41px;
+      font-size: 20px;
+      border: 3px solid #2a2a2a;
+      border-radius: 14px;
+      font-weight: 400;
+      margin-top: 20px;
+}
+#login-info{
+  margin-top: 100px;
+  text-align: center;
+}
+/* Форма авторизації */
+
+/* Бокова панель для постів */
 
 .aside-for-post{
-  height: 100vh;
   width: 15%;
   background: #5e5d578f;
   float: left;
@@ -86,14 +172,146 @@ ul.list {
   border-left: none;
 }
 
+/* Бокова панель для постів */
+/* Форма добавлянна поста */
+.form-add-post{
+  margin: 79px;
+    margin-top: 54px;
+    background: #5e5e72a8;
+    border: 3px solid #746822;
+    padding: 36px;
+    padding-top: 32px;
+}
+#button_add{
+  text-align: center;
+      padding: 5px;
+      padding-left: 15px;
+      padding-right: 15px;
+      background: #dea7025c;
+      height: 41px;
+      font-size: 20px;
+      border: 3px solid #2a2a2a;
+      border-radius: 14px;
+      font-weight: 400;
+}
+.form-input{
+  padding: 5px;
+margin-left: 30px;
+height: 25px;
+width: 30%;
+border-radius: 2px;
+border: 1px solid black;
+background: #5f7c726e;
+}
+.form-input-url{
+  padding: 5px;
+margin-left: 80px;
+height: 25px;
+width: 30%;
+border-radius: 2px;
+background: #5f7c726e;
+border: 1px solid black;
+}
+
+.form-input-text{
+  padding: 5px;
+  border: 1px solid black;
+      margin-left: 23px;
+      height: 176px;
+      width: 80%;
+      border-radius: 2px;
+      background: #5f7c726e;
+}
+/* Форма добавлянна поста */
+/* Форма відображення постів */
+.form-post-block{
+  background: #0070ff24;
+    padding: 10px;
+    padding-left: 30px;
+    margin-top: 15px;
+    width: 83%;
+    border: 2px solid #b0a9a9;
+    margin-left: 200px;
+}
+.info-about-post{
+  padding: 5px;
+background: #989797ab;
+border: 1px solid;
+margin-left: 319px;
+text-align: center;
+
+}
 .img-post{
-  width: 150px;
+  width: 306px;
+float: left;
+border: 2px solid #241c1c;
+border-radius: 37px;
+margin: 10px;
+margin-top: 0;
+}
+
+
+.categor_text{
+  margin-right: 15px;
+}
+
+.date_text{
+  margin-left: 10px;
+
+}
+#topic_my_post{
+  color: black;
+    text-align: center;
+    font-size: 30px;
+}
+#text_my_post{
+  color: black;
+font-size: 15px;
+font-weight: 400;
+}
+.link-read-post{
+  text-align: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      background: #71757b;
+      height: 41px;
+      font-size: 20px;
+      border: 2px solid #2a2a2a;
+      border-radius: 14px;
+      font-weight: 400;
+      margin-left: 350px;
+      width: 150px;
+}
+.link-no-decoration{
+  text-decoration: none;
+  color: black;
+}
+/* Форма відображення постів */
+/* пагінація */
+.list-pages{
+  margin-left: 632px;
+    padding: 10px;
+    text-align: center;}
+
+.page-num{
+  background: #c7c4bc;
   float: left;
   margin: 10px;
+  padding: 13px;
+  border: 1px solid black;
+  border-radius: 24px;
+  transition: .6s ease;
 }
-.form-post-block{
-  margin-left: 200px;
+.page-num.page-num-selected{
+  background: #ffb500ab;
 }
-.list-pages{
-  margin-left: 200px;
+.page-num:hover{
+  background: #4a5adeab;
+}
+
+.post-categ-list{
+  background: #c9c9ce;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid;
 }

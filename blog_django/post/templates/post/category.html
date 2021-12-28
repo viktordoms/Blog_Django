@@ -18,22 +18,21 @@
 
 {% block content %}
 <!-- Відображенян постів -->
-<div class="form-post-block">
 {% for el in post_category %}
-   <div class="info-about-post">
-      <p class="categor_text">Категорія: {{el.category}}</p>
-	    <p class="date_text">Дата створення: {{el.time_create|date:"d-m-Y H:i:s"}}</p>
-  </div>
+<form class="form-post-block">
   <div id="my_post_block">
   {% if el.photo %}
-	   <p><img class="img-post" src="{{el.photo.url}}"></p>
+     <p><img class="img-post" src="{{el.photo.url}}"></p>
   {% endif %}
+  <div class="info-about-post">
+     <b class="categor_text">Категорія:  {{el.category}}</b> | <b class="date_text">Дата створення:  {{el.time_create|date:"d-m-Y H:i:s"}}</b>
+ </div>
     <p id="topic_my_post">Тема: {{ el.title}}</p>
-    <p id="categor_my_post">Текст поста: {{ el.text|linebreaks|truncatewords:30}}</p>
-    <p class="link-read-post"><a href="{{ el.get_absolute_url }}">Читати пост</a></p>
+    <b id="text_my_post">{{ el.text|linebreaks|truncatewords:30}}</b>
+    <p class="link-read-post"><a id='link-no-decoration' href="{{ el.get_absolute_url }}">Читати пост</a></p>
   </div>
+  </form>
 {% endfor %}
-</div>
 <!-- Кінець відобреження постів -->
 
 {% endblock %}

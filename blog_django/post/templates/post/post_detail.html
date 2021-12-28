@@ -25,11 +25,29 @@
    {% endif %}
 
      <div id="my_post_block">
-       <p class="categor_text">Категорія: {{post.category}}</p>
+       <div class="info-about-post">
+          <b class="categor_text">Категорія:  {{post.category}}</b> | <b class="date_text">Дата створення:  {{post.time_create|date:"d-m-Y H:i:s"}}</b>
+      </div>
        <p id="topic_my_post">Тема: {{ post.title}}</p>
-       <p id="categor_my_post">Текст поста: {{ post.text|linebreaks}}</p>
-       <p class="date_text">Дата створення: {{post.time_update|date:"d-m-Y H:i:s"}}</p>
+       <p id="categor_my_post">{{ post.text|linebreaks}}</p>
+
      </div>
+
+     <form class="" action="{% url 'like_post' post.slug %}" method="POST">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+       {% if liked %}
+           <button type="submit" class="fas fa-thumbs-down" name="post_slug" value="{{ post.slug }}"></button>
+       {% else %}
+           <button type="submit" class="fas fa-thumbs-up" name="post_slug" value="{{ post.slug }}"></button>
+       {% endif %}
+    {% else %}
+    <div>
+        <a href="{% url 'login' %}">Авторизуйтесь</a> для того щоб лайкнути
+    </div>
+    {% endif %}
+       {{total_likes}}
+     </form>
 </div>
 {% endblock %}
 <!-- Кінець відобреження постів -->

@@ -11,10 +11,10 @@
     <p class="text-inform">Реєстрація користувача</p>
     <div>
     {% for f in form %}
-       <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+       <p><label class="label-area" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
        <div class="form-error">{{ f.errors }}</div>
      {% endfor %}
-      <button type='submit' class="button_add">Реєстрація</button>
+      <button type='submit' id="button_register" >Реєстрація</button>
     </div>
-
+ </form>
 {% endblock %}

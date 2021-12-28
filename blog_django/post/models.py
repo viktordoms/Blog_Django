@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+
 
 
 class Post(models.Model):
@@ -11,6 +13,16 @@ class Post(models.Model):
     time_update = models.DateTimeField("Дата редагування", auto_now=True)
     is_published = models.BooleanField("Публікування", default=True)
     category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name="Категорія")
+    likes = models.ManyToManyField(User, related_name="blog_posts")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+
+    def total_likes(self):
+        return self.likes.count()
+
+    # def save(self, request=False, *args, **kwargs):
+    #     if request == True:
+    #         self.user =
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

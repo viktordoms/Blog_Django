@@ -6,19 +6,21 @@
 
 {% block content %}
 
-<h1>{{title}}</h1>
+<h1 class="text-inform" id="login-info">{{title}}</h1>
 
-<form method="post">
+<form method="post" class="form-login">
     {% csrf_token %}
 
-<div class="form-error">{{ form.non_field_errors }}</div>
+   <div class="form-error">{{ form.non_field_errors }}</div>
 
-{% for f in form %}
-<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-<div class="form-error">{{ f.errors }}</div>
-{% endfor %}
+   {% for f in form %}
 
-    <button type="submit">Вхід</button>
+      <p><label class="label-area" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+      <div class="form-error">{{ f.errors }}</div>
+
+   {% endfor %}
+
+     <button type="submit" id="button_login">Вхід</button>
 </form>
 
 

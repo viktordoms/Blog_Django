@@ -1,16 +1,16 @@
 {% if categories_selected == 0 %}
-    <p class="selected">Всі категорії</p>
+    <p class="selected"> <i class="fas fa-angle-double-right"></i>Всі категорії</p>
 {% else %}
-    <p><a href="{% url 'all_post' %}">Всі категорії</a></p>
+    <p class="post-categ-list"><a class="link-no-decoration" href="{% url 'all_post' %}"><i class="fas fa-car-side"></i>  Всі категорії</a></p>
 {% endif %}
 
 
 {% for c in categor %}
 {% if c.post__count > 0 %}
   {% if c.pk == categories_selected %}
-    <p class="selected">{{c.name}}</p>
+    <p class="selected"><i class="fas fa-angle-double-right"></i> {{c.name}}</p>
   {% else %}
-    <p><a href="{{ c.get_absolute_url }}">{{c.name}}</a></p>
+    <p class="post-categ-list"><a class="link-no-decoration" href="{{ c.get_absolute_url }}"> <i class="fas fa-car-side"></i> {{c.name}}</a></p>
   {% endif %}
 {% endif %}
 {% endfor %}

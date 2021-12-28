@@ -6,11 +6,20 @@
       <div id="button-header-main" class="button-header">
         <a id="header-button-main-text" href="{% url 'main' %}"><i class="fas fa-home"></i> Головна</a>
       </div>
-      <div class="">
+      <div class="header-login-register">
        {% if request.user.is_authenticated %}
-				<li class="last"> {{user.username}} | <a href="{% url 'logout' %}">Вихід</a></li>
+
+				<div > 
+          <a class="button-header" id="header-button-login-text" href="{% url 'my_post' %}">Мої пости</a>
+
+          <b id="text-user-name">{{user.username}}</b>
+           |
+           <a class="button-header" id="header-button-login-text" href="{% url 'logout' %}">Вихід <i class="fas fa-sign-in-alt"></i></a></div>
 				{% else %}
-				<li class="last"><a href="{% url 'register' %}">Реєстрація</a> | <a href="{% url 'login' %}">Вхід</a></li>
+				<div >
+          <a class="button-header" id="header-button-register-text" href="{% url 'register' %}"><i class="fas fa-registered"></i> Реєстрація</a>
+          |
+          <a  class="button-header" id="header-button-login-text" href="{% url 'login' %}">Вхід <i class="fas fa-sign-in-alt"></i></a></div>
 				{% endif %}
       </div>
     </div>
@@ -20,30 +29,32 @@
   {% block content %} {% endblock %}
 
   <!-- Пагінатор -->
+
   <nav class="list-pages">
-      <ul>
+    {% if page_obj.has_other_pages %}
         {% if page_obj.has_previous %}
-         <li class="page-num">
-        	  <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-         </li>
+         <p class="page-num">
+        	  <a class="link-no-decoration" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+         </p>
         {% endif %}
 
           {% for p in paginator.page_range %}
           {% if page_obj.number == p %}
-          <li class="page-num page-num-selected">{{ p }}</li>
+              <p class="page-num page-num-selected">{{ p }}</p>
           {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
-          <li class="page-num">
-              <a href="?page={{ p }}">{{ p }}</a>
-          </li>
+            <p class="page-num">
+              <a class="link-no-decoration" href="?page={{ p }}">{{ p }}</a>
+            </p>
           {% endif %}
   		    {% endfor %}
 
         {% if page_obj.has_next %}
-         <li class="page-num">
-  	        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-         </li>
+         <p class="page-num">
+  	        <a class="link-no-decoration" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+         </p>
         {% endif %}
-      </ul>
+
+      {% endif %}
   </nav>
   <!-- Кінець пагінатора -->
 
