@@ -1,0 +1,30 @@
+{% extends 'main/header_for_all.html' %}
+{% load static %}
+{% load post_tags %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block aside %}
+<!-- Бокова панель -->
+<aside class="aside-for-post">
+{% list_categories 'name' categories_selected %}
+</aside>
+<!-- Кінець бокової панелі -->
+{% endblock %}
+
+<!-- Віікно видалення -->
+{% block content %}
+<form class="form-delete-block"  method="POST">
+  {% csrf_token %}
+       <div class="info-delete-post">
+          <b class="categor_text" id='info-delete-text'>Ви впевненні що хочете видалити пост {{post.title}}?</b><br>
+          <button type="submit" class='btn-form-delete' > Так, ВИДАЛИТИ </button>
+          <a class='btn-form-delete' id='btn-back' href="{% url 'post' post.slug %}">Назад</a>
+      </div>
+</form>
+{% endblock %}
+<!-- Кінець  -->

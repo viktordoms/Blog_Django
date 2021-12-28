@@ -1,0 +1,26 @@
+{% extends 'main/header_for_all.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block content %}
+
+<form  action="{% url 'update_post' post.slug %}" method="post" class="form-add-post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p class="text-inform">Редагування поста</p>
+  <div class="form-error">{{ form.non_field_errors }}</div>
+
+ {% for f in form %}
+
+ <p><label class="label-areal" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+ <div class="form-error">{{ f.errors }}</div>
+ {% endfor %}
+
+  <button type="submit" id="button_add" >Зберегти зміни</button>
+</form>
+
+{% endblock %}
