@@ -6,21 +6,57 @@
       <div id="button-header-main" class="button-header">
         <a id="header-button-main-text" href="{% url 'main' %}"><i class="fas fa-home"></i> Головна</a>
       </div>
-      <div id="button-header-login" class="button-header">
-        <a id="header-button-login-text" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Вхід</a>
+      <div class="header-login-register">
+       {% if request.user.is_authenticated %}
+
+				<div > 
+          <a class="button-header" id="header-button-login-text" href="{% url 'my_post' %}">Мої пости</a>
+
+          <b id="text-user-name">{{user.username}}</b>
+           |
+           <a class="button-header" id="header-button-login-text" href="{% url 'logout' %}">Вихід <i class="fas fa-sign-in-alt"></i></a></div>
+				{% else %}
+				<div >
+          <a class="button-header" id="header-button-register-text" href="{% url 'register' %}"><i class="fas fa-registered"></i> Реєстрація</a>
+          |
+          <a  class="button-header" id="header-button-login-text" href="{% url 'login' %}">Вхід <i class="fas fa-sign-in-alt"></i></a></div>
+				{% endif %}
       </div>
-      <div id="button-header-register" class="button-header">
-        <a id="header-button-register-text" href="{% url 'register' %}"><i class="fas fa-registered"></i> Реєстрація</a>
-      </div>
-      <!-- <div id="user_acount">
-        <a class="button_menu" href="/users" type='submit' >Мій акаунт</a>
-      </div>
-      <div id="all_post_form">
-        <a class="button_menu" href="/all_post" type='submit' >Всі пости</a>
-      </div> -->
     </div>
 </header>
 <main>
-  {% block main %}{% endblock %}
+  {% block aside %} {% endblock %}
+  {% block content %} {% endblock %}
+
+  <!-- Пагінатор -->
+
+  <nav class="list-pages">
+    {% if page_obj.has_other_pages %}
+        {% if page_obj.has_previous %}
+         <p class="page-num">
+        	  <a class="link-no-decoration" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+         </p>
+        {% endif %}
+
+          {% for p in paginator.page_range %}
+          {% if page_obj.number == p %}
+              <p class="page-num page-num-selected">{{ p }}</p>
+          {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+            <p class="page-num">
+              <a class="link-no-decoration" href="?page={{ p }}">{{ p }}</a>
+            </p>
+          {% endif %}
+  		    {% endfor %}
+
+        {% if page_obj.has_next %}
+         <p class="page-num">
+  	        <a class="link-no-decoration" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+         </p>
+        {% endif %}
+
+      {% endif %}
+  </nav>
+  <!-- Кінець пагінатора -->
+
 </main>
 {% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'main/header_for_all.html' %}
+{% load static %}
+{% load post_tags %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block aside %}
+<!-- Бокова панель -->
+<aside class="aside-for-post">
+{% list_categories 'name' categories_selected %}
+</aside>
+<!-- Кінець бокової панелі -->
+{% endblock %}
+
+<!-- Відображенян постів -->
+{% block content %}
+<div class="form-post-block">
+
+   {% if post.photo %}
+     <p><img class="img-post" src="{{post.photo.url}}"></p>
+   {% endif %}
+
+     <div id="my_post_block">
+       <div class="info-about-post">
+          <b class="categor_text">Категорія:  {{post.category}}</b> | <b class="date_text">Дата створення:  {{post.time_create|date:"d-m-Y H:i:s"}}</b>
+      </div>
+       <p id="topic_my_post">Тема: {{ post.title}}</p>
+       <p id="categor_my_post">{{ post.text|linebreaks}}</p>
+
+     </div>
+
+     <form class="" action="{% url 'like_post' post.slug %}" method="POST">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+       {% if liked %}
+           <button type="submit" class="fas fa-thumbs-down" name="post_slug" value="{{ post.slug }}"></button>
+       {% else %}
+           <button type="submit" class="fas fa-thumbs-up" name="post_slug" value="{{ post.slug }}"></button>
+       {% endif %}
+    {% else %}
+    <div>
+        <a href="{% url 'login' %}">Авторизуйтесь</a> для того щоб лайкнути
+    </div>
+    {% endif %}
+       {{total_likes}}
+     </form>
+</div>
+{% endblock %}
+<!-- Кінець відобреження постів -->
